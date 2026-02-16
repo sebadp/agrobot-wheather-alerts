@@ -128,7 +128,7 @@ async def _try_acquire_advisory_lock(session: AsyncSession) -> bool:
     """Try to acquire a PostgreSQL advisory lock. Returns False if already held."""
     try:
         result = await session.execute(text(f"SELECT pg_try_advisory_lock({EVALUATION_LOCK_ID})"))
-        return result.scalar()
+        return bool(result.scalar())
     except Exception:
         # Not PostgreSQL (e.g. SQLite in tests) — skip locking
         return True

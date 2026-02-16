@@ -40,7 +40,7 @@ htmlcov/
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
-tests/
+
 
 # Documentation
 docs/
@@ -54,5 +54,3 @@ AGENTS.md
 CLAUDE.md
 Makefile
 docker-compose.yml
-alembic.ini
-alembic/

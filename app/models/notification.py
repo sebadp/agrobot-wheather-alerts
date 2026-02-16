@@ -9,7 +9,7 @@ from sqlalchemy.orm import Mapped, mapped_column
 from app.models import Base
 
 
-class NotificationType(str, enum.Enum):
+class NotificationType(enum.StrEnum):
     RISK_INCREASED = "risk_increased"
     RISK_DECREASED = (
         "risk_decreased"  # Reserved: validate with product to avoid spam before implementing
@@ -17,7 +17,7 @@ class NotificationType(str, enum.Enum):
     RISK_ENDED = "risk_ended"
 
 
-class NotificationStatus(str, enum.Enum):
+class NotificationStatus(enum.StrEnum):
     PENDING = "pending"
     DELIVERED = "delivered"
     FAILED = "failed"

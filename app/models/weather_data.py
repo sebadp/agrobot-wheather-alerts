@@ -19,7 +19,7 @@ from sqlalchemy.orm import Mapped, mapped_column
 from app.models import Base
 
 
-class ClimateEventType(str, enum.Enum):
+class ClimateEventType(enum.StrEnum):
     FROST = "frost"
     RAIN = "rain"
     HAIL = "hail"

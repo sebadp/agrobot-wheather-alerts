@@ -50,7 +50,8 @@ Los casos son: A (risk_ended), B (delta significativo), C (cambio menor, no noti
 `evaluate_alerts()` usa un CTE con `ROW_NUMBER() OVER (PARTITION BY ... ORDER BY triggered_at DESC)` para obtener la última notificación por cada par (alert_config_id, weather_data_id) en una sola query. No cambies esto a N+1 queries.
 
 ### Transacciones
-`evaluate_alerts()` opera dentro de `async with session.begin()`. Si falla algo, rollback completo. No mezcles commits parciales.
+### Transacciones
+`evaluate_alerts()` usa `await session.commit()` al final. La sesión tiene `autocommit=False` por default. Si falla algo antes del commit, la sesión se cierra y hace rollback automático. No mezcles commits parciales.
 
 ## Convenciones de código
 
@@ -145,7 +146,7 @@ El seed usa `ON CONFLICT DO UPDATE` (upsert) para las probabilidades, así se pu
 
 ## Coverage
 
-78% total (30 tests). La lógica de negocio (evaluator, models, schemas) tiene ~100%. Lo que baja el número:
+78% total (32 tests). La lógica de negocio (evaluator, models, schemas) tiene ~100%. Lo que baja el número:
 - `weather_seeder.py` (44%): usa syntax PostgreSQL, no se testea con SQLite
 - `main.py` (56%): lifespan y scheduler no se ejecutan en tests
 - Routers (42-51%): se testean vía ASGI client pero la cobertura no se registra correctamente por el transport

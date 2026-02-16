@@ -19,7 +19,10 @@ jobs:
           cache: pip
 
       - name: Install dependencies
-        run: pip install -e ".[dev]"
+        run: |
+          pip install --no-cache-dir .
+          pip install --no-cache-dir --no-deps .
+          pip install --no-cache-dir ".[dev]"
 
       - name: Ruff check
         run: ruff check app tests
@@ -39,7 +42,10 @@ jobs:
           cache: pip
 
       - name: Install dependencies
-        run: pip install -e ".[dev]"
+        run: |
+          pip install --no-cache-dir .
+          pip install --no-cache-dir --no-deps .
+          pip install --no-cache-dir ".[dev]"
 
       - name: Mypy
         run: mypy app/
@@ -57,7 +63,10 @@ jobs:
           cache: pip
 
       - name: Install dependencies
-        run: pip install -e ".[dev]"
+        run: |
+          pip install --no-cache-dir .
+          pip install --no-cache-dir --no-deps .
+          pip install --no-cache-dir ".[dev]"
 
       - name: Run tests
         run: pytest

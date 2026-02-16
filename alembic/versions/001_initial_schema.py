@@ -64,7 +64,7 @@ def upgrade() -> None:
         ),
         sa.Column("event_type", sa.String(50), nullable=False),
         sa.Column("threshold", sa.Numeric(3, 2), nullable=False),
-        sa.Column("is_active", sa.Boolean, default=True, nullable=False),
+        sa.Column("is_active", sa.Boolean, server_default=sa.text("true"), nullable=False),
         sa.Column("created_at", sa.DateTime(timezone=True), server_default=sa.func.now()),
         sa.Column("updated_at", sa.DateTime(timezone=True), server_default=sa.func.now()),
         sa.UniqueConstraint("field_id", "event_type", name="uq_alert_field_event"),

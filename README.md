@@ -8,7 +8,7 @@ FastAPI + SQLAlchemy 2.x async + asyncpg + PostgreSQL + Alembic + APScheduler + 
 
 ## Requisitos
 
-- Python >= 3.11
+- Python >= 3.12
 - Docker y Docker Compose
 - Make (preinstalado en macOS/Linux; Windows: `choco install make` o usar WSL)
 

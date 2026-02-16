@@ -35,7 +35,7 @@ seed:
 # --- Local dev (venv) ---
 
 dev:
-	python -m venv .venv
+	python3 -m venv .venv
 	$(VENV)pip install -e ".[dev]"
 	$(VENV)pre-commit install
 	@echo ""

@@ -50,7 +50,6 @@ Los casos son: A (risk_ended), B (delta significativo), C (cambio menor, no noti
 `evaluate_alerts()` usa un CTE con `ROW_NUMBER() OVER (PARTITION BY ... ORDER BY triggered_at DESC)` para obtener la última notificación por cada par (alert_config_id, weather_data_id) en una sola query. No cambies esto a N+1 queries.
 
 ### Transacciones
-### Transacciones
 `evaluate_alerts()` usa `await session.commit()` al final. La sesión tiene `autocommit=False` por default. Si falla algo antes del commit, la sesión se cierra y hace rollback automático. No mezcles commits parciales.
 
 ## Convenciones de código

@@ -38,7 +38,7 @@ class WeatherData(Base):
 
     id: Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     field_id: Mapped[uuid.UUID] = mapped_column(
-        UUID(as_uuid=True), ForeignKey("fields.id"), index=True, nullable=False
+        UUID(as_uuid=True), ForeignKey("fields.id", ondelete="CASCADE"), index=True, nullable=False
     )
     event_date: Mapped[date] = mapped_column(Date, nullable=False)
     event_type: Mapped[str] = mapped_column(String(50), nullable=False)

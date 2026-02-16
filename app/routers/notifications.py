@@ -26,7 +26,7 @@ async def list_notifications(
     offset: int = Query(default=0, ge=0),
     db: AsyncSession = Depends(get_db),
 ):
-    """List notifications for a user with optional type filter and pagination.
+    """List active notifications for a user with optional type filter and pagination.
 
     Auth: requires JWT. ``user_id`` in path must match ``current_user.id``
     — users can only see their own notifications.  An admin role could

@@ -17,6 +17,9 @@ target_metadata = Base.metadata
 
 db_url = os.getenv("DATABASE_URL", config.get_main_option("sqlalchemy.url"))
 
+if not db_url:
+    raise ValueError("DATABASE_URL env var is required for migrations.")
+
 
 def run_migrations_offline() -> None:
     context.configure(

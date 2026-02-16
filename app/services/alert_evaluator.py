@@ -156,7 +156,8 @@ async def evaluate_alerts(session: AsyncSession) -> dict:
 
 
 async def _do_evaluate(session: AsyncSession) -> dict:
-    today = date.today()
+    now = datetime.now(UTC)
+    today = now.date()
 
     # CTE: latest notification per (alert_config_id, weather_data_id)
     latest_notification = (

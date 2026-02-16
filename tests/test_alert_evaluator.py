@@ -306,8 +306,8 @@ class TestEvaluateAlerts:
             .all()
         )
 
-        if len(notifs) >= 2:
-            assert notifs[1].previous_notification_id == notifs[0].id
+        assert len(notifs) >= 2
+        assert notifs[1].previous_notification_id == notifs[0].id
 
     @pytest.mark.asyncio
     async def test_idempotency(self, seeded_session: AsyncSession):
